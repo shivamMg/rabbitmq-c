@@ -123,7 +123,7 @@ if (BUILD_SHARED_LIBS)
       target_compile_options(rabbitmq PUBLIC "-pthread")
     endif()
 
-    target_link_libraries(rabbitmq ${RMQ_LIBRARIES})
+    target_link_libraries(rabbitmq ${RMQ_LIBRARIES} ${CMAKE_DL_LIBS})
 
     if (WIN32)
         set_target_properties(rabbitmq PROPERTIES VERSION ${RMQ_VERSION} OUTPUT_NAME rabbitmq.${RMQ_SOVERSION})
@@ -146,7 +146,7 @@ if (BUILD_STATIC_LIBS)
       target_compile_options(rabbitmq-static PUBLIC "-pthread")
     endif()
 
-    target_link_libraries(rabbitmq-static ${RMQ_LIBRARIES})
+    target_link_libraries(rabbitmq-static ${RMQ_LIBRARIES} ${CMAKE_DL_LIBS})
 
     set_target_properties(rabbitmq-static PROPERTIES COMPILE_DEFINITIONS AMQP_STATIC)
     if (WIN32)
